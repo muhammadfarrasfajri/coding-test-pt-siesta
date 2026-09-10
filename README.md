@@ -52,7 +52,6 @@ Buat database baru di PostgreSQL Anda dengan nama `core_banking_db`:
 
 ```
 psql -U postgres -c "CREATE DATABASE core_banking_db;"
-
 ```
 
 ### 2. Setup Environment Variables
@@ -61,7 +60,6 @@ Salin file `.env.example` menjadi `.env`:
 
 ```
 cp .env.example .env
-
 ```
 
 Lalu buka file `.env` dan sesuaikan kredensial PostgreSQL Anda:
@@ -74,7 +72,6 @@ DB_PASS=password_postgres_anda
 DB_NAME=core_banking_db
 DB_USE=postgres
 PORT=8080
-
 ```
 
 ### 3. Jalankan Migrasi & Seeding Data Dummy
@@ -83,14 +80,12 @@ Aplikasi ini sudah dilengkapi dengan _Database Seeder_. Perintah di bawah ini ak
 
 ```
 go run ./cmd/migrate up
-
 ```
 
 ### 4. Jalankan Server
 
 ```
 go run main.go
-
 ```
 
 _Server akan berjalan di `http://localhost:8080_`
@@ -103,14 +98,10 @@ Untuk menjalankan _unit test_ pada logika bisnis (_Service Layer_) dan memastika
 
 ```
 go test ./... -v -race
-
 ```
-
 or
-
 ```
 go test ./... -v
-
 ```
 
 _(Catatan: Flag `-race` memerlukan CGO/C Compiler 64-bit. Jika Anda menjalankan ini di environment tanpa C Compiler aktif, cukup gunakan `go test ./... -v`)_
@@ -124,7 +115,3 @@ Jika Anda menggunakan **VS Code** (dengan ekstensi _REST Client_) atau **JetBrai
 ---
 
 _Dibuat oleh Muhammad Farras Fajri untuk Coding Test PT SIESTA._
-
-```
-
-```
