@@ -21,7 +21,7 @@ Sebuah _RESTful API Service_ berbasis Golang untuk memproses transaksi transfer 
 
 ## 📁 Struktur Direktori
 
-```text
+```
 .
 ├── bootstrap/               # Inisialisasi dependensi aplikasi
 ├── cmd/migrate/             # Entry point untuk script migrasi database (Goose)
@@ -36,8 +36,8 @@ Sebuah _RESTful API Service_ berbasis Golang untuk memproses transaksi transfer 
 ├── .env.example             # Template environment variables
 ├── api_test.http            # Kumpulan HTTP Request untuk pengujian (REST Client)
 └── main.go                  # Bootstrap utama aplikasi
+
 ```
-````
 
 ## ⚙️ Persyaratan Sistem
 
