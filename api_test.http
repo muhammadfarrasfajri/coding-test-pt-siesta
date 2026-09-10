@@ -1,0 +1,62 @@
+@baseUrl = http://localhost:8080/api/v1
+
+### 1. Skenario Sukses: Transfer Normal
+# Pastikan akun A001 dan B002 sudah ada di database dan A001 punya saldo cukup
+POST {{baseUrl}}/transfer
+Content-Type: application/json
+X-Idempotency-Key: trx-success-001
+X-Trace-ID: trace-req-001
+
+{
+    "from_account": "A001",
+    "to_account": "B002",
+    "amount": 25000
+}
+
+### 2. Skenario Idempotency: Request diulang
+# Gunakan Idempotency-Key yang SAMA persis dengan request pertama.
+# Ekspektasi: Saldo TIDAK terpotong dua kali, response 200 OK (Transfer already processed)
+POST {{baseUrl}}/transfer
+Content-Type: application/json
+X-Idempotency-Key: trx-success-001
+
+{
+    "from_account": "A001",
+    "to_account": "B002",
+    "amount": 25000
+}
+
+### 3. Skenario Gagal: Saldo Tidak Cukup
+# Asumsi: Akun B002 saldonya 0 atau kurang dari 1 Miliar
+POST {{baseUrl}}/transfer
+Content-Type: application/json
+X-Idempotency-Key: trx-fail-insufficient-001
+
+{
+    "from_account": "B002",
+    "to_account": "A001",
+    "amount": 1000000000
+}
+
+### 4. Skenario Gagal: Validasi Header Kosong
+# Ekspektasi: 400 Bad Request karena X-Idempotency-Key tidak dikirim
+POST {{baseUrl}}/transfer
+Content-Type: application/json
+
+{
+    "from_account": "A001",
+    "to_account": "B002",
+    "amount": 50000
+}
+
+### 5. Skenario Gagal: Validasi Payload Kosong/Salah
+# Ekspektasi: 400 Bad Request karena amount tidak boleh 0 atau minus
+POST {{baseUrl}}/transfer
+Content-Type: application/json
+X-Idempotency-Key: trx-fail-payload-001
+
+{
+    "from_account": "A001",
+    "to_account": "B002",
+    "amount": -100
+}
