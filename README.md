@@ -1,10 +1,3 @@
-Berikut adalah revisi `README.md` yang sudah disesuaikan persis dengan struktur folder aslimu. Saya juga menambahkan langkah penggunaan `.env.example` agar dokumentasinya terlihat jauh lebih profesional.
-
-Silakan _copy-paste_ langsung teks ini:
-
----
-
-````markdown
 # Core Banking Transfer Engine - SIESTA Coding Test
 
 Sebuah _RESTful API Service_ berbasis Golang untuk memproses transaksi transfer antar-rekening (_Core Banking_). Proyek ini dirancang dengan fokus utama pada **Data Integrity, Concurrency (Low Footprint), Atomicity,** dan **Clean Architecture**.
